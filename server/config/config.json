@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": null,
+    "database": "makers_bnb_development",
+    "host": "127.0.0.1",
+    "post": 8000,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": null,
+    "database": "makers_bnb_test",
+    "host": "127.0.0.1",
+    "post": 8000,
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": null,
+    "database": "makers_bnb_production",
+    "host": "127.0.0.1",
+    "post": 8000,
+    "dialect": "postgres"
+  }
+}
