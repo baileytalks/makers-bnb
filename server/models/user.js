@@ -1,9 +1,9 @@
 // 'use strict';
 // module.exports = function(sequelize, DataTypes) {
-//   var Property = sequelize.define('Property', {
-//     title: DataTypes.STRING
-//     description: DataTypes.TEXT
-//     price: DataTypes.INTEGER
+//   var User = sequelize.define('User', {
+//     name: DataTypes.STRING,
+//     e - mail: DataTypes.STRING,
+//     password: DataTypes.TEXT
 //   }, {
 //     classMethods: {
 //       associate: function(models) {
@@ -11,25 +11,25 @@
 //       }
 //     }
 //   });
-//   return Property;
+//   return User;
 // };
 
 module.exports = (sequelize, DataTypes) => {
-  const Property = sequelize.define('Property', {
-    content: {
+  const User = sequelize.define('User', {
+    title: {
       name: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      price: DataTypes.INTEGER
+      email: DataTypes.STRING,
+      password: DataTypes.TEXT
     },
-    }, {
+  }, {
     classMethods: {
       associate: (models) => {
-        Property.belongsTo(models.User, {
+        User.hasMany(models.Property, {
           foreignKey: 'userId',
-          onDelete: 'CASCADE',
+          as: 'property',
         });
       },
     },
   });
-  return Property;
+  return User;
 };
