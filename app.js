@@ -6,7 +6,7 @@ const ejs = require('ejs');
 // Set up the express app
 const app = express();
 var session = require('express-session');
-var sess;
+const usersController = require('./server/controllers').users;
 
 // Log requests to the console.
 app.use(logger('dev'));
@@ -46,6 +46,9 @@ app.get('/login', function(req, res) {
 app.post('/confirmation', function(req, res) {
   sess = req.session;
   sess.name = req.body.name;
+  sess.email = req.body.email;
+  sess.password = req.body.password;
+  usersController.create(sess.name, sess.email, sess.password);
   res.render("confirmation", {
     name: sess.name
   });

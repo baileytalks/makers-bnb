@@ -16,10 +16,14 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Property = sequelize.define('Property', {
-    content: {
-      name: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      price: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+    },
+    description: {
+      type: DataTypes.TEXT,
+    },
+    price: {
+      type: DataTypes.INTEGER,
     },
     }, {
     classMethods: {
