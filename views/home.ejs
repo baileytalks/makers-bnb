@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script data-main='scripts/index' src='scripts/require.js'></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-  <h1>Create account</h1>
-  <form id='newUser' action='/confirmation' method='post'>
-    <div>
-      <label for='name'>Name: </label>
-      <input type='text' name='name'>
-      <label for='email'>Email: </label>
-      <input type='text' name='email'>
-      <label for='password'>Password: </label>
-      <input type='password' name='password'>
-      <button id='submitButton' type='submit' value='submit'>submit</button>
-    </div>
-  </form>
+  <h1>Welcome to Makers BnB</h1>
+
+    <form method="get" action="/signup">
+      <button type="submit">Sign Up!</button>
+    </form>
+
+    <form method="get" action="/login">
+      <button type="submit">Login!</button>
+    </form>
+
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 </script>
 </body>
