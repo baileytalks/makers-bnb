@@ -46,12 +46,17 @@ app.get('/login', function(req, res) {
 app.post('/confirmation', function(req, res) {
   sess = req.session;
   sess.name = req.body.name;
-  console.log(req.body.password);
-  console.log(req.body.passwordConfirmation);
+
+  if ( req.body.password != req.body.passwordConfirmation ) {
+    res.render("signup", {
+      error: 'Passwords do not match!'
+    })
+  }
+
   res.render("confirmation", {
     name: sess.name
-  });
-});
+  })
+})
 
 //----------------------------------------------------------------
 
