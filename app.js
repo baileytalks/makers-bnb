@@ -46,6 +46,8 @@ app.get('/login', function(req, res) {
 app.post('/confirmation', function(req, res) {
   sess = req.session;
   sess.name = req.body.name;
+  console.log(req.body.password);
+  console.log(req.body.passwordConfirmation);
   res.render("confirmation", {
     name: sess.name
   });
