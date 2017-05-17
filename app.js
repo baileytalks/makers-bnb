@@ -8,6 +8,11 @@ const app = express();
 var session = require('express-session');
 var sess;
 
+// Set up the encryption loveliness
+var simplecrypt = require('simplecrypt');
+
+var sc = simplecrypt();
+
 // Log requests to the console.
 app.use(logger('dev'));
 
@@ -49,6 +54,9 @@ app.get('/login', function(req, res) {
 app.post('/confirmation', function(req, res) {
   sess = req.session;
   sess.name = req.body.name;
+
+  var encryptedPassword = sc.password(req.body.password);
+  console.log(encryptedPassword);
 
   if ( req.body.password != req.body.passwordConfirmation ) {
     res.render("signup", {
