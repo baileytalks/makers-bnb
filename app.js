@@ -8,12 +8,6 @@ const app = express();
 var session = require('express-session');
 const usersController = require('./server/controllers/users.js');
 
-
-// Set up the encryption loveliness
-var simplecrypt = require('simplecrypt');
-
-var sc = simplecrypt();
-
 // Log requests to the console.
 app.use(logger('dev'));
 
@@ -55,22 +49,24 @@ app.get('/login', function(req, res) {
 app.post('/confirmation', function(req, res) {
   sess = req.session;
   sess.name = req.body.name;
-  sess.email = req.body.email;
+  sess.password = req.body.password;
+  sess.passwordConfirmation = req.body.passwordConfirmation;
 
-  var encryptedPassword = sc.password(req.body.password);
-  console.log(encryptedPassword);
+ passwordConfirmation(res);
 
-  if ( req.body.password != req.body.passwordConfirmation ) {
-    res.render("signup", {
-      error: 'Passwords do not match!'
-    })
-  }
-  usersController.create(sess.name, sess.email, encryptedPassword);
-    res.render("confirmation", {
+ res.render("confirmation", {
     name: sess.name
   })
 })
 
 //----------------------------------------------------------------
+
+function passwordConfirmation(res) {
+  if ( sess.password != sess.passwordConfirmation ) {
+    res.render("signup", {
+      error: 'Passwords do not match!'
+    })
+  }
+}
 
 module.exports = app;
