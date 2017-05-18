@@ -6,16 +6,21 @@
 </head>
 <body>
   <h1>Create account</h1>
+
+  <div>
+    <%=error%>
+  </div>
+
   <form id='newUser' action='/confirmation' method='post'>
     <div>
       <label for='name'>Name: </label>
-      <input type='text' name='name'>
+      <input type='text' name='name' required>
       <label for='email'>Email: </label>
-      <input type='text' name='email'>
+      <input type='text' name='email' required>
       <label for='password'>Password: </label>
-      <input type='password' name='password'>
+      <input type='password' name='password' required>
       <label for='password'>Password Confirmation: </label>
-      <input type='password' name='passwordConfirmation'>
+      <input type='password' name='passwordConfirmation' required>
       <button id='submitButton' type='submit' value='submit'>submit</button>
     </div>
   </form>
