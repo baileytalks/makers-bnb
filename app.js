@@ -2,11 +2,12 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
+const usersController = require('./server/controllers/users.js');
 
 // Set up the express app
 const app = express();
 var session = require('express-session');
-const usersController = require('./server/controllers/users.js');
+var sess;
 
 // Log requests to the console.
 app.use(logger('dev'));
@@ -49,10 +50,13 @@ app.get('/login', function(req, res) {
 app.post('/confirmation', function(req, res) {
   sess = req.session;
   sess.name = req.body.name;
+  sess.email = req.body.email;
   sess.password = req.body.password;
   sess.passwordConfirmation = req.body.passwordConfirmation;
 
  passwordConfirmation(res);
+
+ usersController.create(sess.name, sess.email, sess.password);
 
  res.render("confirmation", {
     name: sess.name
