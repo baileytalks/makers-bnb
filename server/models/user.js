@@ -16,11 +16,15 @@
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    title: {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.TEXT
+    name: {
+      type: DataTypes.STRING,
     },
+    email: {
+      type: DataTypes.STRING,
+    },
+    password: {
+      type: DataTypes.STRING,
+    }
   }, {
     classMethods: {
       associate: (models) => {
