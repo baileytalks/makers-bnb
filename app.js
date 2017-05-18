@@ -6,7 +6,8 @@ const ejs = require('ejs');
 // Set up the express app
 const app = express();
 var session = require('express-session');
-const usersController = require('./server/controllers').users;
+const usersController = require('./server/controllers/users.js');
+
 
 // Log requests to the console.
 app.use(logger('dev'));
