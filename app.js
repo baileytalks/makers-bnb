@@ -25,6 +25,18 @@ var Property = connection.define ('property', {
   description: Sequelize.STRING,
   price: Sequelize.STRING,
 });
+
+function userCreate() {
+  connection.sync().then(function() {
+  User.create({
+    name: sess.name,
+    email: sess.email,
+    password: sess.password,
+  })
+});
+}
+
+module.exports = userCreate;
 // Log requests to the console.
 app.use(logger('dev'));
 
@@ -70,13 +82,7 @@ app.post('/confirmation', function(req, res) {
   sess.password = req.body.password;
   sess.passwordConfirmation = req.body.passwordConfirmation;
 
-  connection.sync().then(function() {
-    User.create({
-      name: sess.name,
-      email: sess.email,
-      password: sess.password,
-    })
-  });
+  userCreate(sess.name, sess.email, sess.password);
 
  passwordConfirmation(res);
 
@@ -106,16 +112,16 @@ app.post('/newProperty', function(req, res) {
   res.redirect("/propertyList");
 })
 
-app.get('/propertyList', function(req, res) {
-  connection.sync().then(function() {
-    (Property.findAll().then( function(users) {users = users})
-
-  })
-
-  res.render('propertyList', {
-    users: users
-  })
-})
+// app.get('/propertyList', function(req, res) {
+//   connection.sync().then(function() {
+//     (Property.findAll().then( function(users) {users = users})
+//
+//   })
+//
+//   res.render('propertyList', {
+//     users: users
+//   })
+// })
 
 //----------------------------------------------------------------
 
