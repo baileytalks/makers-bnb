@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <h1>Add Property</h1>
+
+  <form id='newProperty' action='/newProperty' method='post'>
+    <div>
+      <label for='title'>Title: </label>
+      <input type='text' name='title' required>
+      <label for='description'>Description: </label>
+      <input type='text' name='description' required>
+      <label for='price'>Price: </label>
+      <input type='text' name='price' required>
+      <button id='submitButton' type='submit' value='submit'>submit</button>
+    </div>
+  </form>
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+</script>
+</body>
+</html>
