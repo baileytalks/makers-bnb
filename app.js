@@ -26,17 +26,6 @@ var Property = connection.define ('property', {
   price: Sequelize.STRING,
 });
 
-function userCreate() {
-  connection.sync().then(function() {
-  User.create({
-    name: sess.name,
-    email: sess.email,
-    password: sess.password,
-  })
-});
-}
-
-module.exports = userCreate;
 // Log requests to the console.
 app.use(logger('dev'));
 
@@ -82,7 +71,17 @@ app.post('/confirmation', function(req, res) {
   sess.password = req.body.password;
   sess.passwordConfirmation = req.body.passwordConfirmation;
 
-  userCreate(sess.name, sess.email, sess.password);
+  var userCreate = function userCreate() {
+    connection.sync().then(function() {
+      User.create({
+        name: sess.name,
+        email: sess.email,
+        password: sess.password,
+      })
+    });
+  };
+
+  module.exports = userCreate;
 
  passwordConfirmation(res);
 
